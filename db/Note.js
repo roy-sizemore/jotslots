@@ -20,16 +20,16 @@ class Note {
 
   readNotes() {
     return this.read().then((notes) => {
-      let seeNotes = [];
+      let viewNotes = [];
 
       // If notes isn't an array or can't be turned into one, send back a new empty array
       try {
-        seeNotes = [].concat(JSON.parse(notes));
+        viewNotes = [].concat(JSON.parse(notes));
       } catch (err) {
-        seeNotes = [];
+        viewNotes = [];
       }
 
-      return seeNotes;
+      return viewNotes;
     });
   };
 
