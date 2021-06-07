@@ -20,7 +20,7 @@ class Note {
 
   readNote() {
     return this.read().then((notes) => {
-      let viewNotes = [];
+      let viewNotes;
 
       // If notes isn't an array or can't be turned into one, send back a new empty array
       try {
@@ -42,7 +42,7 @@ class Note {
     // Get all notes, add the new note, write all the updated notes, return the newNote
     return this.readNote()
       .then((notes) => [...notes, newNote])
-      .then((updatedNotes) => this.write(updatedNotes))
+      .then((updateNote) => this.write(updateNote))
       .then(() => newNote);
   };
 
@@ -50,7 +50,7 @@ class Note {
     // Get all notes, remove the note with the given id, write the filtered notes
     return this.readNote()
       .then((notes) => notes.filter((note) => note.id !== id))
-      .then((filteredNotes) => this.write(filteredNotes));
+      .then((delNote) => this.write(delNote));
   };
 };
 
