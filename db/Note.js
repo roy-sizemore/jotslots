@@ -18,7 +18,7 @@ class Note {
     });
   };
 
-  readNotes() {
+  readNote() {
     return this.read().then((notes) => {
       let viewNotes = [];
 
@@ -33,14 +33,14 @@ class Note {
     });
   };
 
-  addNote(note) {
+  createNote(note) {
     const { title, text } = note;
 
     // Add a unique id to the note using uuid package
     const newNote = { title, text, id: uuidv1() };
 
     // Get all notes, add the new note, write all the updated notes, return the newNote
-    return this.readNotes()
+    return this.readNote()
       .then((notes) => [...notes, newNote])
       .then((updatedNotes) => this.write(updatedNotes))
       .then(() => newNote);
@@ -48,7 +48,7 @@ class Note {
 
   deleteNote(id) {
     // Get all notes, remove the note with the given id, write the filtered notes
-    return this.readNotes()
+    return this.readNote()
       .then((notes) => notes.filter((note) => note.id !== id))
       .then((filteredNotes) => this.write(filteredNotes));
   };
